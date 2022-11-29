@@ -6,6 +6,7 @@ function generatePassword() {
   var upLetters = letters.toUpperCase();
   var numbers = "0123456789"
   var specials = "!#$%&()*+,-./:;<=>?@[]\^_`{|}~"
+  var chooseFrom = "";
   // YOUR CODE GOES HERE
   var isLowercase = confirm('Would you like to use lowercase?');
   var isUppercase = confirm('Would you like to use uppercase?');  
@@ -31,6 +32,9 @@ function generatePassword() {
     // USE SPECIAL CHARACTERS
     console.log('special')
   }
+
+  chooseFrom += numbers
+  chooseFrom += specials
 
   // GRAB RANDOM LETTERS
 

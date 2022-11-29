@@ -1,0 +1,11 @@
+{
+  "terminal.integrated.shellIntegration.enabled": true,
+  "terminal.integrated.defaultProfile.osx": "",
+  "terminal.integrated.automationProfile.windows": {
+  
+  },
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "terminal.integrated.env.linux": {
+  
+  }
+}
