@@ -8,29 +8,34 @@ function generatePassword() {
   var specials = "!#$%&()*+,-./:;<=>?@[]\^_`{|}~"
   var chooseFrom = "";
   // YOUR CODE GOES HERE
+  var isLength = prompt("Enter password length. 8-128")
   var isLowercase = confirm('Would you like to use lowercase?');
   var isUppercase = confirm('Would you like to use uppercase?');  
   var isNumber = confirm('Would you like to use numbers?');
   var isSpecial = confirm('Would you like to use special characters?');
 
+  if (isLength) {
+    console.log(isLength);
+  }
+
   if (isLowercase) {
     // USE LOWERCASE LETTERS
-    console.log('lowercase')
+    console.log('lowercase');
   }
 
   if (isUppercase) {
     // USE UPPERCASE LETTERS
-    console.log('uppercase')
+    console.log('uppercase');
   }  
   
   if (isNumber) {
     // USE NUMBERS
-    console.log('number')
+    console.log('number');
   }
 
   if (isSpecial) {
     // USE SPECIAL CHARACTERS
-    console.log('special')
+    console.log('special');
   }
 
   chooseFrom += numbers
