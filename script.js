@@ -2,6 +2,10 @@
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
+  var letters = "abcdefghijklmnopqrstuvwxyz"
+  var upLetters = letters.toUpperCase();
+  var numbers = "0123456789"
+  var specials = "!#$%&()*+,-./:;<=>?@[]\^_`{|}~"
   // YOUR CODE GOES HERE
   var isLowercase = confirm('Would you like to use lowercase?');
   var isUppercase = confirm('Would you like to use uppercase?');  
