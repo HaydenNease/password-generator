@@ -15,21 +15,31 @@ function generatePassword() {
   var upLetters = letters.toUpperCase();
   var numbers = "0123456789"
   var specials = "!#$%&()*+,-./:;<=>?@[]\^_`{|}~"
-  var chooseFrom = "";
+  var chooseFrom = [];
+  var factor = 0
 
   // YOUR CODE GOES HERE
-  var passLength = prompt("Enter password length. 8-128")
   var isLowercase = confirm('Would you like to use lowercase?');
   var isUppercase = confirm('Would you like to use uppercase?');  
   var isNumber = confirm('Would you like to use numbers?');
   var isSpecial = confirm('Would you like to use special characters?');
+  var passLength = prompt("Enter password length. 8-128")
   
   function getRandomLower() {
-    return letters[Math.floor(Math.random() * letters.length)];
+    chooseFrom += letters[Math.floor(Math.random() * letters.length)];    
+  }
+  function getRandomUpper() {
+    chooseFrom += upLetters[Math.floor(Math.random() * upLetters.length)];    
+  }
+  function getRandomNumber() {
+    chooseFrom += numbers[Math.floor(Math.random() * numbers.length)];    
+  }
+  function getRandomSpecial() {
+    chooseFrom += specials[Math.floor(Math.random() * specials.length)];    
   }
   
-  var lowerRandom = Math.floor(Math.random() * letters.length);
-  var lowerPick = letters[lowerRandom];
+  // var lowerRandom = Math.floor(Math.random() * letters.length);
+  // var lowerPick = letters[lowerRandom];
 
   if (passLength) {
     console.log(passLength);
@@ -38,29 +48,48 @@ function generatePassword() {
   if (isLowercase) {
     // USE LOWERCASE LETTERS
     console.log(getRandomLower());
+    factor++;
   }
 
   if (isUppercase) {
     // USE UPPERCASE LETTERS
-    console.log('uppercase');
+    factor++;
+    // chooseFrom += upLetters;    
   }  
   
   if (isNumber) {
+    factor++;
     // USE NUMBERS
-    console.log('number');
+    // chooseFrom += numbers;
   }
 
   if (isSpecial) {
     // USE SPECIAL CHARACTERS
-    console.log('special');
+    factor++;
+    // chooseFrom += specials;
   }
 
-  // chooseFrom += numbers
-  // chooseFrom += specials
+  if (isLowercase) {
+    for (var i = 1; i < (passLength / factor); i++) getRandomLower(i);
+    }
+  
+  if (isUppercase) {
+    for (var i = 1; i < (passLength / factor); i++) getRandomUpper(i);
+  }
+ 
+  if (isNumber) {
+    for (var i = 1; i < (passLength / factor); i++) getRandomNumber(i);
+  }
+ 
+  if (isSpecial) {
+    for (var i = 1; i < (passLength / factor); i++) getRandomSpecial(i);
+  }
+ 
+
 
   // GRAB RANDOM LETTERS
 
-  return "";
+  return chooseFrom;
 }
 
 
