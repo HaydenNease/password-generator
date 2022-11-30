@@ -1,26 +1,43 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
 function generatePassword() {
   var letters = "abcdefghijklmnopqrstuvwxyz"
   var upLetters = letters.toUpperCase();
   var numbers = "0123456789"
   var specials = "!#$%&()*+,-./:;<=>?@[]\^_`{|}~"
   var chooseFrom = "";
+
   // YOUR CODE GOES HERE
-  var isLength = prompt("Enter password length. 8-128")
+  var passLength = prompt("Enter password length. 8-128")
   var isLowercase = confirm('Would you like to use lowercase?');
   var isUppercase = confirm('Would you like to use uppercase?');  
   var isNumber = confirm('Would you like to use numbers?');
   var isSpecial = confirm('Would you like to use special characters?');
+  
+  function getRandomLower() {
+    return letters[Math.floor(Math.random() * letters.length)];
+  }
+  
+  var lowerRandom = Math.floor(Math.random() * letters.length);
+  var lowerPick = letters[lowerRandom];
 
-  if (isLength) {
-    console.log(isLength);
+  if (passLength) {
+    console.log(passLength);
   }
 
   if (isLowercase) {
     // USE LOWERCASE LETTERS
-    console.log('lowercase');
+    console.log(getRandomLower());
   }
 
   if (isUppercase) {
@@ -38,22 +55,14 @@ function generatePassword() {
     console.log('special');
   }
 
-  chooseFrom += numbers
-  chooseFrom += specials
+  // chooseFrom += numbers
+  // chooseFrom += specials
 
   // GRAB RANDOM LETTERS
 
   return "";
 }
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
