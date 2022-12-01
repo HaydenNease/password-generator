@@ -16,14 +16,19 @@ function generatePassword() {
   var numbers = "0123456789"
   var specials = "!#$%&()*+,-./:;<=>?@[]\^_`{|}~"
   var chooseFrom = "";
-  var factor = 0
+  var factor = 0;
+  
+  var passLength = prompt("How long does your password need to be? Enter a number between 8 and 128.");
+  
+  if ((passLength) < 8 || (passLength) > 128 || isNaN(passLength)){
+    alert("Please don't be difficult...");
+    generatePassword();
+  } 
 
-  // YOUR CODE GOES HERE
   var isLowercase = confirm('Would you like to use lowercase?');
   var isUppercase = confirm('Would you like to use uppercase?');  
   var isNumber = confirm('Would you like to use numbers?');
   var isSpecial = confirm('Would you like to use special characters?');
-  var passLength = prompt("Enter password length. 8-128")
   
   function getRandomLower() {
     chooseFrom += letters[Math.floor(Math.random() * letters.length)];    
@@ -41,13 +46,10 @@ function generatePassword() {
   // var lowerRandom = Math.floor(Math.random() * letters.length);
   // var lowerPick = letters[lowerRandom];
 
-  if (passLength) {
-    console.log(passLength);
-  }
+  
 
   if (isLowercase) {
-    // USE LOWERCASE LETTERS
-    console.log(getRandomLower());
+    // USE LOWERCASE LETTERS    
     factor++;
   }
 
@@ -70,7 +72,7 @@ function generatePassword() {
   }
 
   if (isLowercase) {
-    for (var i = 1; i < (Math.ceil(passLength / factor)); i++) getRandomLower(i);
+    for (var i = 1; i <= ((passLength / factor) + (passLength % factor)); i++) getRandomLower(i);
     console.log("lower is " + i);
     }
   
@@ -89,9 +91,26 @@ function generatePassword() {
     console.log("special is " + i);
   }
  
+  // SHUFFLE
 
+  var chooseArray = chooseFrom.split("");
+  console.log(chooseArray);
 
-  // GRAB RANDOM LETTERS
+  function fisherYates(){
+    var i = chooseArray.length;
+    while (--i > 0) {
+       var temp = Math.floor(Math.random() * (i + 1));
+       [chooseArray[temp], chooseArray[i]] = [chooseArray[i], chooseArray[temp]];
+    }
+  }
+  
+  fisherYates(chooseArray);
+
+  chooseFrom = chooseArray.join("");
+  
+  if (!isLowercase && !isUppercase && !isNumber && !isSpecial) {
+    chooseFrom = "This doesn't feel very secure";
+  }
 
   return chooseFrom;
 }
