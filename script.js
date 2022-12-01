@@ -15,7 +15,7 @@ function generatePassword() {
   var upLetters = letters.toUpperCase();
   var numbers = "0123456789"
   var specials = "!#$%&()*+,-./:;<=>?@[]\^_`{|}~"
-  var chooseFrom = [];
+  var chooseFrom = "";
   var factor = 0
 
   // YOUR CODE GOES HERE
@@ -70,19 +70,23 @@ function generatePassword() {
   }
 
   if (isLowercase) {
-    for (var i = 1; i < (passLength / factor); i++) getRandomLower(i);
+    for (var i = 1; i < (Math.ceil(passLength / factor)); i++) getRandomLower(i);
+    console.log("lower is " + i);
     }
   
   if (isUppercase) {
-    for (var i = 1; i < (passLength / factor); i++) getRandomUpper(i);
+    for (var i = 1; i <= (passLength / factor); i++) getRandomUpper(i);
+    console.log("upper is " + i);
   }
  
   if (isNumber) {
-    for (var i = 1; i < (passLength / factor); i++) getRandomNumber(i);
+    for (var i = 1; i <= (passLength / factor); i++) getRandomNumber(i);
+    console.log("number is " + i);
   }
  
   if (isSpecial) {
-    for (var i = 1; i < (passLength / factor); i++) getRandomSpecial(i);
+    for (var i = 1; i <= (passLength / factor); i++) getRandomSpecial(i);
+    console.log("special is " + i);
   }
  
 
