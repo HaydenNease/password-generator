@@ -1,15 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
-}
-
 function generatePassword() {
   var letters = "abcdefghijklmnopqrstuvwxyz"
   var upLetters = letters.toUpperCase();
@@ -29,7 +20,23 @@ function generatePassword() {
   var isUppercase = confirm('Would you like to use uppercase?');  
   var isNumber = confirm('Would you like to use numbers?');
   var isSpecial = confirm('Would you like to use special characters?');
+  // factor reflects how many options were selected
+  if (isLowercase) {   
+    factor++;
+  }
+
+  if (isUppercase) {
+    factor++; 
+  }  
   
+  if (isNumber) {
+    factor++;
+  }
+
+  if (isSpecial) {    
+    factor++;
+  }
+  // Pulls random character from each string and adds it to chooseFrom.
   function getRandomLower() {
     chooseFrom += letters[Math.floor(Math.random() * letters.length)];    
   }
@@ -42,60 +49,27 @@ function generatePassword() {
   function getRandomSpecial() {
     chooseFrom += specials[Math.floor(Math.random() * specials.length)];    
   }
-  
-  // var lowerRandom = Math.floor(Math.random() * letters.length);
-  // var lowerPick = letters[lowerRandom];
-
-  
-
-  if (isLowercase) {
-    // USE LOWERCASE LETTERS    
-    factor++;
-  }
-
-  if (isUppercase) {
-    // USE UPPERCASE LETTERS
-    factor++;
-    // chooseFrom += upLetters;    
-  }  
-  
-  if (isNumber) {
-    factor++;
-    // USE NUMBERS
-    // chooseFrom += numbers;
-  }
-
-  if (isSpecial) {
-    // USE SPECIAL CHARACTERS
-    factor++;
-    // chooseFrom += specials;
-  }
-
+  // depending on options selected, adds the randomized characters to chooseFrom string
   if (isLowercase) {
     for (var i = 1; i <= ((passLength / factor) + (passLength % factor)); i++) getRandomLower(i);
-    console.log("lower is " + i);
-    }
+  }
   
   if (isUppercase) {
     for (var i = 1; i <= (passLength / factor); i++) getRandomUpper(i);
-    console.log("upper is " + i);
   }
  
   if (isNumber) {
     for (var i = 1; i <= (passLength / factor); i++) getRandomNumber(i);
-    console.log("number is " + i);
   }
  
   if (isSpecial) {
     for (var i = 1; i <= (passLength / factor); i++) getRandomSpecial(i);
-    console.log("special is " + i);
   }
  
   // SHUFFLE
-
+  // converts string to array
   var chooseArray = chooseFrom.split("");
-  console.log(chooseArray);
-
+  // shuffles array
   function fisherYates(){
     var i = chooseArray.length;
     while (--i > 0) {
@@ -105,7 +79,7 @@ function generatePassword() {
   }
   
   fisherYates(chooseArray);
-
+  // convert array back to string
   chooseFrom = chooseArray.join("");
   
   if (!isLowercase && !isUppercase && !isNumber && !isSpecial) {
@@ -114,7 +88,12 @@ function generatePassword() {
 
   return chooseFrom;
 }
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-
+  passwordText.value = password;
+}
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
